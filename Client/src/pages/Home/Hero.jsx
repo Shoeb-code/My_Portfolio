@@ -1,176 +1,122 @@
 import { motion } from "framer-motion";
 import {
-  ChevronDown,
   Github,
   Linkedin,
-  Mail,
   ArrowRight,
   Sparkles,
-  Code2,
   Briefcase,
+  Code2,
+  Laptop2,
+  Brain,
 } from "lucide-react";
 
 export default function Hero({ scrollToContact }) {
   return (
-    <section className="relative top-19 min-h-screen overflow-hidden bg-gray-950 text-white">
-      {/* ===== Luxury Background ===== */}
+    <section className="relative min-h-screen overflow-hidden bg-black text-white">
+      {/* Ambient Glow Background */}
       <div className="absolute inset-0">
-        <motion.div
-          animate={{ x: [0, 120, 0], y: [0, -80, 0] }}
-          transition={{ duration: 18, repeat: Infinity }}
-          className="absolute top-20 left-10 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"
-        />
-
-        <motion.div
-          animate={{ x: [0, -120, 0], y: [0, 120, 0] }}
-          transition={{ duration: 22, repeat: Infinity }}
-          className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-        />
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#6366f115,transparent_35%),radial-gradient(circle_at_bottom_right,#a855f715,transparent_35%)]" />
-
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute left-1/2 top-[-15%] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-[150px]" />
+        <div className="absolute bottom-[-10%] right-[10%] h-[350px] w-[350px] rounded-full bg-purple-500/10 blur-[120px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_50%)]" />
       </div>
 
-      {/* ===== Main Layout ===== */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
-          {/* ===== Left Content ===== */}
-          <div>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                         border border-white/10 bg-white/5 backdrop-blur-md mb-8"
-            >
-              <Sparkles size={14} className="text-indigo-400" />
-              <span className="text-sm text-gray-300">
-                Available for freelance & full-time opportunity
-
-              </span>
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
-            >
-              Building{" "}
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                scalable digital
-              </span>
-              <br />
-              products with
-              <br />
-              premium experiences.
-            </motion.h1>
-
-            {/* Richer Text */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-300 leading-8 max-w-2xl mb-10"
-            >
-              Hi, I’m{" "}
-              <span className="text-white font-semibold">
-                Shoeb Khan
-              </span>{" "}
-              — a full-stack software developer focused on crafting
-              high-performance web and mobile applications using
-              React, React Native, Node.js, and modern backend systems.
-              <br />
-              <br />
-              I specialize in transforming ideas into scalable,
-              elegant, and production-ready products.
-            </motion.p>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-4 mb-10"
-            >
-              <button
-                onClick={scrollToContact}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r
-                           from-indigo-500 via-purple-500 to-pink-500
-                           hover:scale-105 shadow-2xl
-                           transition duration-300 font-medium
-                           inline-flex items-center gap-2"
-              >
-                Let’s Work Together
-                <ArrowRight size={18} />
-              </button>
-
-              <a
-                href="#projects"
-                className="px-8 py-4 rounded-2xl border border-white/10
-                           bg-white/5 hover:bg-white/10
-                           backdrop-blur-md transition"
-              >
-                Explore Projects
-              </a>
-            </motion.div>
-
-            {/* Social */}
-            <div className="flex gap-4">
-              <SocialIcon href="https://github.com/Shoeb-code">
-                <Github size={20} />
-              </SocialIcon>
-
-              <SocialIcon href="https://www.linkedin.com/in/shoeb-khan-480b58259/">
-                <Linkedin size={20} />
-              </SocialIcon>
-
-             
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
+        {/* Premium Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mx-auto mb-10"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 backdrop-blur-xl">
+            <Sparkles size={14} className="text-indigo-400" />
+            <span className="text-sm text-gray-300">
+              Full Stack Developer • Freelance • Open to work
+            </span>
           </div>
+        </motion.div>
 
-          {/* ===== Right Premium Info Panel ===== */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="hidden lg:block"
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center max-w-6xl mx-auto"
+        >
+          <h1 className="text-6xl md:text-8xl font-semibold tracking-tight leading-[1.02]">
+            Building
+            <span className="block bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
+              scalable digital
+            </span>
+            products that matter
+          </h1>
+
+          <p className="mt-8 text-xl leading-9 text-gray-400 max-w-4xl mx-auto">
+            Hi, I’m <span className="text-white font-medium">Shoeb Khan</span> —
+            a full-stack software developer specializing in building
+            production-grade applications, AI-powered platforms, and
+            premium user experiences.
+            <br />
+            <br />
+            Experienced in <span className="text-white">freelance projects</span>,
+            internships, and end-to-end product development across web and mobile.
+          </p>
+        </motion.div>
+
+        {/* CTA */}
+        <div className="mt-12 flex justify-center flex-wrap gap-5">
+          <button
+            onClick={scrollToContact}
+            className="px-8 py-4 rounded-2xl bg-white text-black font-medium hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
           >
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-2xl">
-              <div className="space-y-6">
-                <InfoCard
-                  icon={<Code2 className="text-indigo-400" />}
-                  title="Tech Focus"
-                  text="Full-stack engineering, mobile development, scalable backend systems."
-                />
+            Let’s Work Together
+            <ArrowRight size={18} />
+          </button>
 
-                <InfoCard
-                  icon={<Briefcase className="text-purple-400" />}
-                  title="Current Role"
-                  text="Software Developer Intern building production-grade applications."
-                />
+          <a
+            href="#projects"
+            className="px-8 py-4 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all"
+          >
+            Explore Projects
+          </a>
+        </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-4">
-                  <StatBox number="10+" label="Projects" />
-                  <StatBox number="450+" label="LeetCode" />
-                  <StatBox number="2+" label="Internships" />
-                  <StatBox number="100%" label="Commitment" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+        {/* Premium Metrics Cards */}
+        <div className="mt-20 grid md:grid-cols-4 gap-5">
+          <PremiumCard
+            icon={<Laptop2 className="text-indigo-400" />}
+            title="10+ Projects"
+            text="Built scalable web, mobile, AI-powered, and freelance products with real-world use cases."
+          />
+
+          <PremiumCard
+            icon={<Briefcase className="text-purple-400" />}
+            title="Freelance Work"
+            text="Delivered freelance solutions for real clients, solving business challenges through scalable web applications, dashboards, and user-focused digital products."
+          />
+
+          <PremiumCard
+            icon={<Code2 className="text-pink-400" />}
+            title="Full Stack"
+            text="React, Node.js,java, MongoDB,jwt authentication,Express, Javascript ,Firebase"
+          />
+
+          <PremiumCard
+            icon={<Brain className="text-cyan-400" />}
+            title="450+ DSA "
+            text="Solved 450+ DSA problems with strong expertise in algorithms, optimization, and logical problem solving."
+          />
+        </div>
+
+        {/* Social */}
+        <div className="mt-12 flex justify-center gap-4">
+          <SocialIcon href="https://github.com/Shoeb-code">
+            <Github size={20} />
+          </SocialIcon>
+
+          <SocialIcon href="https://www.linkedin.com/in/shoeb-khan-480b58259/">
+            <Linkedin size={20} />
+          </SocialIcon>
         </div>
       </div>
-
-      {/* ===== Scroll ===== */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-400"
-      >
-        <ChevronDown size={28} />
-      </motion.div>
     </section>
   );
 }
@@ -179,31 +125,22 @@ function SocialIcon({ href, children }) {
   return (
     <a
       href={href}
-      className="p-3 rounded-2xl border border-white/10
-                 bg-white/5 hover:bg-white/10 transition"
+      className="p-3 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:scale-105 transition-all duration-300"
     >
       {children}
     </a>
   );
 }
 
-function InfoCard({ icon, title, text }) {
+function PremiumCard({ icon, title, text }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-      <div className="mb-3">{icon}</div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-gray-300 leading-7">{text}</p>
-    </div>
-  );
-}
-
-function StatBox({ number, label }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
-      <p className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">
-        {number}
-      </p>
-      <p className="text-sm text-gray-400 mt-1">{label}</p>
-    </div>
+    <motion.div
+      whileHover={{ y: -6 }}
+      className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-6"
+    >
+      <div className="mb-4">{icon}</div>
+      <h3 className="text-xl font-medium mb-2">{title}</h3>
+      <p className="text-gray-400 leading-7">{text}</p>
+    </motion.div>
   );
 }

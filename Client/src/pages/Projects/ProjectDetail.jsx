@@ -133,10 +133,10 @@ export default function ProjectDetail() {
           {/* ===== Features + Highlights ===== */}
           <div className="grid lg:grid-cols-2 gap-10 mt-24">
             {/* Features */}
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
+            <div className="rounded-[2rem] transition-all duration-200 ease-in-out hover:scale-[1.04] hover:border-indigo-500 hover:bg-white/10 hover:shadow-2xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <CheckCircle2 className="text-indigo-400" />
-                <h2 className="text-2xl font-semibold">
+                <CheckCircle2 className="text-indigo-400" size={43} />
+                <h2 className="text-2xl text-amber-400 font-semibold">
                   Key Features
                 </h2>
               </div>
@@ -155,18 +155,16 @@ export default function ProjectDetail() {
             </div>
 
             {/* Project insights */}
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
+            <div className="rounded-[2rem] transition-all duration-200 ease-in-out hover:scale-[1.04] hover:border-indigo-500 hover:bg-white/10 hover:shadow-2xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <Layers3 className="text-purple-400" />
-                <h2 className="text-2xl font-semibold">
+                <Layers3 className="text-purple-400" size={43} />
+                <h2 className="text-2xl  text-indigo-400 font-semibold">
                   Project Insights
                 </h2>
               </div>
 
-              <p className="text-gray-300 leading-8">
-                This project demonstrates strong capabilities in
-                architecture design, frontend engineering, backend
-                integration, scalability, and clean UI/UX execution.
+              <p className="text-gray-300 leading-10 ">
+                {project.projectsInsight}
               </p>
             </div>
           </div>
@@ -182,7 +180,7 @@ export default function ProjectDetail() {
                 <motion.div
                   key={i}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="rounded-3xl border border-white/10
+                  className="rounded-3xl  border border-white/10
                              bg-white/5 backdrop-blur-xl
                              p-3 shadow-xl"
                 >

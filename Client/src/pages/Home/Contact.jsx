@@ -7,6 +7,7 @@ import {
   Send,
   MapPin,
   Briefcase,
+  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -46,7 +47,6 @@ export default function Contact({ innerRef }) {
       );
 
       setStatus("success");
-
       setFormData({
         name: "",
         email: "",
@@ -64,74 +64,74 @@ export default function Contact({ innerRef }) {
     <section
       ref={innerRef}
       id="contact"
-      className="relative py-32 bg-gray-950 text-white overflow-hidden"
+      className="relative py-32 bg-black text-white overflow-hidden"
     >
-      {/* ===== Background Effects ===== */}
+      {/* Premium Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-[28rem] h-[28rem] bg-indigo-500/10 blur-3xl rounded-full" />
-        <div className="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-purple-500/10 blur-3xl rounded-full" />
-
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute top-20 left-10 w-[28rem] h-[28rem] bg-indigo-500/10 blur-[140px] rounded-full" />
+        <div className="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-purple-500/10 blur-[140px] rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_45%)]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* ===== Header ===== */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <div className="inline-flex px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-xl">
+            <Sparkles size={14} className="text-purple-300" />
             <span className="text-sm text-gray-400 tracking-wide">
               Let’s Connect
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
             Get In Touch
           </h2>
 
-          <p className="text-gray-300 text-lg leading-8 max-w-2xl mx-auto">
-            Open to freelance projects, internships, and full-stack
-            software development opportunities.
+          <p className="text-gray-400 text-lg leading-8 max-w-2xl mx-auto">
+            Open to freelance projects, internships, and
+            full-stack software development opportunities.
           </p>
         </motion.div>
 
-        {/* ===== Main Grid ===== */}
+        {/* Main Layout */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* ===== Left Contact Info ===== */}
+          {/* Left Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-5"
           >
             <ContactCard
-              icon={<Mail className="text-indigo-400" />}
+              icon={<Mail className="text-indigo-300" />}
               title="Email"
               value="shoebkhanjmi076@gmail.com"
             />
 
             <ContactCard
-              icon={<Phone className="text-indigo-400" />}
+              icon={<Phone className="text-purple-300" />}
               title="Phone"
               value="+91 9536969183"
             />
 
             <ContactCard
-              icon={<MapPin className="text-indigo-400" />}
+              icon={<MapPin className="text-pink-300" />}
               title="Location"
-              value="Okhla, New delhi 110025"
+              value="Okhla, New Delhi"
             />
 
             <ContactCard
-              icon={<Briefcase className="text-indigo-400" />}
+              icon={<Briefcase className="text-cyan-300" />}
               title="Availability"
               value="Open for opportunities"
             />
 
-            {/* Social Links */}
+            {/* Social */}
             <div className="flex gap-4 pt-4">
               <SocialIcon
                 href="https://github.com/Shoeb-code"
@@ -145,14 +145,13 @@ export default function Contact({ innerRef }) {
             </div>
           </motion.div>
 
-          {/* ===== Contact Form ===== */}
+          {/* Form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-2xl border border-white/10
-                       rounded-3xl p-8 space-y-6 shadow-2xl"
+            className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 space-y-6 hover:border-purple-400/20 hover:shadow-[0_20px_60px_rgba(168,85,247,0.15)] transition-all duration-500"
           >
             <InputField
               name="name"
@@ -176,22 +175,13 @@ export default function Contact({ innerRef }) {
               required
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-4 rounded-xl bg-black/30
-                         border border-white/10 text-gray-200
-                         placeholder:text-gray-500
-                         focus:border-indigo-400 focus:ring-1
-                         focus:ring-indigo-400 outline-none
-                         resize-none transition"
+              className="w-full px-4 py-4 rounded-2xl bg-white/[0.03] border border-white/10 text-gray-200 placeholder:text-gray-500 focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 outline-none resize-none transition-all duration-300"
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 rounded-xl bg-gradient-to-r
-                         from-indigo-500 via-purple-500 to-pink-500
-                         hover:scale-[1.02] transition duration-300
-                         disabled:opacity-60 font-semibold text-white
-                         inline-flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-2xl border border-gray-800 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-950 hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 hover:border-indigo-300 font-semibold text-white inline-flex items-center justify-center gap-2 shadow-[0_10px_40px_rgba(168,85,247,0.35)]"
             >
               {loading ? "Sending..." : "Send Message"}
               {!loading && <Send size={18} />}
@@ -215,19 +205,13 @@ export default function Contact({ innerRef }) {
   );
 }
 
-/* ===== Reusable Components ===== */
-
 function ContactCard({ icon, title, value }) {
   return (
-    <div
-      className="flex items-center gap-4 p-5 rounded-2xl
-                 bg-white/5 border border-white/10
-                 hover:border-white/20 transition"
-    >
+    <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-400/20 hover:shadow-[0_10px_30px_rgba(168,85,247,0.12)] transition-all duration-300">
       <div>{icon}</div>
 
       <div>
-        <p className="text-sm text-gray-500 tracking-wide uppercase">
+        <p className="text-sm text-gray-500 uppercase tracking-wide">
           {title}
         </p>
         <p className="text-gray-200 font-medium">
@@ -244,10 +228,7 @@ function SocialIcon({ href, icon }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="p-3 rounded-xl bg-white/5 border border-white/10
-                 text-gray-300 hover:text-white
-                 hover:border-white/20 hover:bg-white/10
-                 transition"
+      className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 text-gray-300 hover:text-white hover:border-indigo-400/30 hover:shadow-[0_8px_20px_rgba(99,102,241,0.15)] transition-all duration-300"
     >
       {icon}
     </a>
@@ -269,12 +250,7 @@ function InputField({
       required
       value={value}
       onChange={onChange}
-      className="w-full px-4 py-4 rounded-xl bg-black/30
-                 border border-white/10 text-gray-200
-                 placeholder:text-gray-500
-                 focus:border-indigo-400 focus:ring-1
-                 focus:ring-indigo-400 outline-none
-                 transition"
+      className="w-full px-4 py-4 rounded-2xl bg-white/[0.03] border border-white/10 text-gray-200 placeholder:text-gray-500 focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 outline-none transition-all duration-300"
     />
   );
 }
