@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navItems = [
   { label: "About", id: "about" },
   { label: "Skills", id: "skills" },
+  { label: "DSA",  id: "dsa" },
   { label: "Projects", id: "projects" },
   { label: "Contact", id: "contact" },
 ];
@@ -14,149 +15,170 @@ export default function Header({ scrollToContact }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("About");
 
+  // 🔹 Navbar background change on scroll
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // 🔥 Scroll Spy (auto active link update)
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      let current = "About";
+
+      navItems.forEach((item) => {
+        const section = document.getElementById(item.id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            current = item.label;
+          }
+        }
+      });
+
+      setActive(current);
+    };
+
+    window.addEventListener("scroll", handleScrollSpy);
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, []);
+
+  // 🔥 Smooth scroll with offset (fixes hidden section issue)
   const handleNavClick = (item) => {
     setActive(item.label);
 
-    if (item.label === "Contact") {
-      scrollToContact();
+    const section = document.getElementById(item.id);
+
+    if (section) {
+      const yOffset = -90; // adjust based on navbar height
+      const y =
+        section.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
 
-    document
-      .getElementById(item.id)
-      ?.scrollIntoView({ behavior: "smooth" });
+    if (item.label === "Contact") scrollToContact();
 
     setOpen(false);
   };
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full z-50"
+      className="fixed top-4 left-0 w-full z-50 flex justify-center px-4"
     >
-      <div className="max-w mx-auto  ">
-        <nav
-          className={`rounded-2xl border transition-all duration-300
-                      ${
-                        scrolled
-                          ? "bg-black/60 backdrop-blur-2xl border-white/10 shadow-2xl"
-                          : "bg-white/5 backdrop-blur-xl border-white/10"
-                      }`}
-        >
-          <div className="px-6 py-4 flex items-center justify-between">
-            {/* ===== Logo ===== */}
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="cursor-pointer"
-            >
-              <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white">
-                Shoeb
-                <span className="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">
-                  .dev
-                </span>
-              </h1>
-            </motion.div>
+      <div
+        className={`w-full max-w-6xl rounded-2xl border transition-all duration-300
+        ${
+          scrolled
+            ? "bg-[#0a0a0a]/80 border-white/10 backdrop-blur-xl"
+            : "bg-[#0a0a0a]/40 border-white/5 backdrop-blur-md"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-4">
 
-            {/* ===== Desktop Nav ===== */}
-            <div className="hidden md:flex items-center gap-10">
-              <ul className="flex items-center gap-8">
-                {navItems.map((item) => (
-                  <li
-                    key={item.label}
-                    onClick={() => handleNavClick(item)}
-                    className="relative cursor-pointer"
+          {/* Logo */}
+          <div className="text-lg font-semibold tracking-tight text-gray-100">
+            Shoeb<span className="text-gray-400">.dev</span>
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
+            <ul className="flex items-center gap-8 text-sm">
+              {navItems.map((item) => (
+                <li
+                  key={item.label}
+                  onClick={() => handleNavClick(item)}
+                  className="relative cursor-pointer"
+                >
+                  <span
+                    className={`transition ${
+                      active === item.label
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
+                    }`}
                   >
-                    <span
-                      className={`text-sm font-medium transition
-                        ${
-                          active === item.label
-                            ? "text-white"
-                            : "text-gray-400 hover:text-white"
-                        }`}
-                    >
-                      {item.label}
-                    </span>
+                    {item.label}
+                  </span>
 
-                    {active === item.label && (
-                      <motion.div
-                        layoutId="navActive"
-                        className="absolute -bottom-2 left-0 right-0 h-[2px]
-                                   rounded-full bg-gradient-to-r
-                                   from-indigo-400 to-pink-400"
-                      />
-                    )}
-                  </li>
-                ))}
-              </ul>
+                  {active === item.label && (
+                    <motion.div
+                      layoutId="nav"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                      className="absolute left-0 -bottom-2 h-[2px] w-full bg-white/80 rounded-full"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
 
-              {/* Premium CTA */}
-              <button
-                onClick={scrollToContact}
-                className="px-5 py-2.5 rounded-xl
-                           bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-                           hover:scale-105 transition duration-300
-                           text-sm font-medium inline-flex items-center gap-2"
-              >
-                Hire Me
-                <ArrowRight size={16} />
-              </button>
-            </div>
-
-            {/* ===== Mobile Button ===== */}
+            {/* CTA */}
             <button
-              className="md:hidden text-white"
-              onClick={() => setOpen(!open)}
+              onClick={() => handleNavClick({ label: "Contact", id: "contact" })}
+              className="px-4 py-2 rounded-lg border text-gray-300 border-white/10 text-sm
+                         hover:bg-white/10 transition flex items-center gap-2"
             >
-              {open ? <X size={24} /> : <Menu size={24} />}
+              Hire Me
+              <ArrowUpRight size={14} />
             </button>
           </div>
 
-          {/* ===== Mobile Menu ===== */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
-                className="md:hidden border-t border-white/10"
-              >
-                <ul className="flex flex-col p-6 gap-5">
-                  {navItems.map((item) => (
-                    <li
-                      key={item.label}
-                      onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer transition
-                        ${
-                          active === item.label
-                            ? "text-white"
-                            : "text-gray-400 hover:text-white"
-                        }`}
+          {/* Mobile Toggle */}
+          <button onClick={() => setOpen(!open)} className="md:hidden text-white">
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden border-t border-white/10"
+            >
+              <div className="p-6 space-y-6">
+                {navItems.map((item) => (
+                  <div
+                    key={item.label}
+                    onClick={() => handleNavClick(item)}
+                    className="flex justify-between items-center text-lg cursor-pointer"
+                  >
+                    <span
+                      className={
+                        active === item.label
+                          ? "text-white"
+                          : "text-gray-400"
+                      }
                     >
                       {item.label}
-                    </li>
-                  ))}
+                    </span>
+                    <ArrowUpRight size={16} />
+                  </div>
+                ))}
 
-                  <button
-                    onClick={scrollToContact}
-                    className="mt-2 px-5 py-3 rounded-xl
-                               bg-gradient-to-r from-indigo-500
-                               via-purple-500 to-pink-500"
-                  >
-                    Hire Me
-                  </button>
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </nav>
+                <button
+                  onClick={() =>
+                    handleNavClick({ label: "Contact", id: "contact" })
+                  }
+                  className="w-full mt-4 py-3 rounded-lg bg-gray-950  text-gray-300 font-medium"
+                >
+                  Hire Me
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );

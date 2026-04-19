@@ -45,7 +45,7 @@ export default function DSA() {
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight mb-5 bg-gradient-to-r from-gray-300  bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight mb-5 bg-gradient-to-r from-gray-300 bg-clip-text text-transparent">
             DSA & Problem Solving
           </h2>
 
@@ -62,28 +62,28 @@ export default function DSA() {
         {/* Top Metrics */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           <MetricCard
-            icon={<Flame className="text-orange-400" size={28} />}
+            icon={<Flame className="text-gray-500" size={28} />}
             title="Problems"
             value="520+"
             subtitle="All levels"
           />
 
           <MetricCard
-            icon={<Brain className="text-purple-400" size={28} />}
+            icon={<Brain className="text-gray-500" size={28} />}
             title="Core Skill"
             value="DSA"
             subtitle="Algorithms"
           />
 
           <MetricCard
-            icon={<TrendingUp className="text-pink-400" size={28} />}
+            icon={<TrendingUp className="text-gray-500" size={28} />}
             title="Consistency"
             value="365+"
             subtitle="Daily streak"
           />
 
           <MetricCard
-            icon={<Trophy className="text-yellow-400" size={28} />}
+            icon={<Trophy className="text-gray-500" size={28} />}
             title="Interview"
             value="Strong"
             subtitle="Ready"
@@ -95,7 +95,7 @@ export default function DSA() {
           {/* Breakdown */}
           <motion.div
             whileHover={{ y: -6 }}
-            className="lg:col-span-2 rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 hover:border-purple-400/30 hover:shadow-[0_20px_60px_rgba(168,85,247,0.18)] transition-all duration-500"
+            className="lg:col-span-2 rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 hover:border-gray-400/30 hover:shadow-[0_20px_60px_rgba(168,85,247,0.18)] transition-all duration-500"
           >
             <div className="flex items-center gap-4 mb-8">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 border border-white/10 flex items-center justify-center shadow-[0_8px_30px_rgba(168,85,247,0.25)]">
@@ -112,26 +112,26 @@ export default function DSA() {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 text-gray-300">
               <DifficultyCard
                 label="Easy"
                 subtitle="Foundation & Speed"
                 value={stats.easySolved}
-                color="from-emerald-500 to-green-400"
+                color="from-gray-800  to-gray-950"
               />
 
               <DifficultyCard
                 label="Medium"
                 subtitle="Core Problem Solving"
                 value={stats.mediumSolved}
-                color="from-yellow-400 to-orange-400"
+                color="from-gray-800 to-gray-950"
               />
 
               <DifficultyCard
                 label="Hard"
                 subtitle="Advanced Algorithms"
                 value={stats.hardSolved}
-                color="from-red-400 to-pink-400"
+                color="from-gray-800 to-gray-950"
               />
             </div>
           </motion.div>
@@ -142,7 +142,7 @@ export default function DSA() {
             className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 hover:border-indigo-400/30 hover:shadow-[0_20px_60px_rgba(99,102,241,0.18)] transition-all duration-500"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 via-gray-950 to-pink-500 flex items-center justify-center shadow-xl">
                 <Award size={26} />
               </div>
 
@@ -150,19 +150,19 @@ export default function DSA() {
                 <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
                   Verified Profile
                 </p>
-                <h3 className="text-2xl font-medium">
+                <h3 className="text-2xl text-gray-400 font-medium">
                   LeetCode
                 </h3>
               </div>
             </div>
 
             <p className="text-gray-300 leading-8 mb-8">
-              Solved <span className="text-white font-semibold">520+</span>{" "}
+              Solved <span className="text-gray-400 font-semibold">520+</span>{" "}
               problems with strong expertise in algorithms,
               optimization, and coding interviews.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-2 bg-gray-950 gap-4 mb-8">
               <MiniStat title="Solved" value="520+" />
               <MiniStat title="Streak" value="365+" />
               <MiniStat title="Hard" value="14+" />
@@ -173,7 +173,7 @@ export default function DSA() {
               href={`https://leetcode.com/u/${USERNAME}/`}
               target="_blank"
               rel="noreferrer"
-              className="w-full inline-flex justify-center items-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-[1.02] transition-all duration-300 font-medium shadow-[0_10px_40px_rgba(168,85,247,0.35)]"
+              className="w-full inline-flex text-gray-400 border border-gray-800 hover:border-gray-700 justify-center items-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-950 hover:scale-[1.02] transition-all duration-300 font-medium shadow-[0_8px_24px_rgba(255,255,255,0.05)]]"
             >
               Explore Profile
               <ExternalLink size={16} />
@@ -189,7 +189,7 @@ function MetricCard({ icon, title, value, subtitle }) {
   return (
     <motion.div
       whileHover={{ y: -6, scale: 1.02 }}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 hover:border-purple-400/20 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)] transition-all duration-300"
+      className="rounded-3xl border border-white/10 bg-gray-950 backdrop-blur-xl p-6 hover:border-gray-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)] transition-all duration-400"
     >
       <div className="mb-4">{icon}</div>
       <h3 className="text-gray-400 text-sm mb-2">{title}</h3>
@@ -212,9 +212,9 @@ function DifficultyCard({ label, subtitle, value, color }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 hover:border-white/20 transition-all duration-300"
+      className="rounded-3xl border border-white/10 bg-gray-950 backdrop-blur-xl p-6 hover:border-gray-400 transition-all duration-200"
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center  justify-between">
         <div>
           <h4 className="text-xl font-medium mb-1">{label}</h4>
           <p className="text-sm text-gray-500">{subtitle}</p>
@@ -223,7 +223,7 @@ function DifficultyCard({ label, subtitle, value, color }) {
         <div
           className={`px-5 py-3 rounded-2xl bg-gradient-to-r ${color} shadow-xl min-w-[100px] text-center`}
         >
-          <p className="text-2xl font-bold text-white">{value}</p>
+          <p className="text-2xl font-bold text-gray-300">{value}</p>
           <p className="text-xs text-white/80">Solved</p>
         </div>
       </div>

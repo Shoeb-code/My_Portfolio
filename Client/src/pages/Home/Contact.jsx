@@ -82,13 +82,13 @@ export default function Contact({ innerRef }) {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-xl">
-            <Sparkles size={14} className="text-purple-300" />
+            <Sparkles size={14} className="text-gray-300" />
             <span className="text-sm text-gray-400 tracking-wide">
               Let’s Connect
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-gray-300 via-gray-600 bg-clip-text text-transparent">
             Get In Touch
           </h2>
 
@@ -188,13 +188,13 @@ export default function Contact({ innerRef }) {
             </button>
 
             {status === "success" && (
-              <p className="text-green-400 text-sm text-center">
+              <p className="text-green-600 text-m text-center">
                 Message sent successfully 🚀
               </p>
             )}
 
             {status === "error" && (
-              <p className="text-red-400 text-sm text-center">
+              <p className="text-red-400 text-m text-center">
                 Failed to send message ❌
               </p>
             )}

@@ -12,7 +12,7 @@ import {
 
 export default function Hero({ scrollToContact }) {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black text-white">
+    <section id="about" className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* Ambient Glow Background */}
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-[-15%] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-[150px]" />
