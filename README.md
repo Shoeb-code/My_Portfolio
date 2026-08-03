@@ -9,21 +9,19 @@
 Building modern, scalable, and high-performance web applications with beautiful user experiences.
 
 <p>
-  <a href="https://portfolio-link.com" target="_blank">
+  <a href="[https://portfolio-link.com](https://shoeb-03-portfolio.vercel.app/)" target="_blank">
     <img src="https://img.shields.io/badge/Portfolio-Live-blue?style=for-the-badge&logo=vercel" />
   </a>
 
-  <a href="https://github.com/yourusername" target="_blank">
+  <a href="[https://github.com/yourusername](https://github.com/Shoeb-code)" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github" />
   </a>
 
-  <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+  <a href="[https://linkedin.com/in/yourlinkedin](https://www.linkedin.com/in/shoeb-khan-480b58259/)" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin" />
   </a>
 
-  <a href="mailto:your@email.com">
-    <img src="https://img.shields.io/badge/Email-Contact-red?style=for-the-badge&logo=gmail" />
-  </a>
+  
 </p>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&pause=1000&center=true&vCenter=true&width=700&lines=Full+Stack+Developer;React+%7C+Node.js+%7C+TypeScript;Building+Modern+Web+Applications;Open+to+Freelance+Projects" />
@@ -34,7 +32,7 @@ Building modern, scalable, and high-performance web applications with beautiful 
 
 # 🌐 Live Portfolio
 
-### 🔗 https://your-portfolio.vercel.app
+### 🔗 [https://your-portfolio.vercel.app](https://shoeb-03-portfolio.vercel.app/)
 
 ---
 
@@ -252,13 +250,13 @@ Interested in working together?
 📧 Email: your@email.com
 
 💼 LinkedIn:
-https://linkedin.com/in/yourlinkedin
+[https://linkedin.com/in/yourlinkedin](https://www.linkedin.com/in/shoeb-khan-480b58259/)
 
 🌐 Portfolio:
-https://your-portfolio.vercel.app
+[https://your-portfolio.vercel.app](https://shoeb-03-portfolio.vercel.app/)
 
 🐙 GitHub:
-https://github.com/yourusername
+[https://github.com/yourusername](https://github.com/Shoeb-code)
 
 ---
 
