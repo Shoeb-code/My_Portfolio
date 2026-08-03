@@ -1,4 +1,9 @@
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
+
+interface PageWrapperProps {
+  children: ReactNode;
+}
 
 const pageVariants = {
   initial: {
@@ -15,7 +20,7 @@ const pageVariants = {
   },
 };
 
-export default function PageWrapper({ children }) {
+export default function PageWrapper({ children }: PageWrapperProps) {
   return (
     <motion.div
       variants={pageVariants}
