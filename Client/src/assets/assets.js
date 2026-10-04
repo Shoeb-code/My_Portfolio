@@ -1,2 +1,7 @@
+import bg from './bg.jpg';
 
-import bg from '../assets/bg.jpg'
+export const assets = {
+  bg,
+};
+
+export default assets;

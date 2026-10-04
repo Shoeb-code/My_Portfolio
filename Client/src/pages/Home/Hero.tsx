@@ -1,19 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { 
-  Github, 
-  Linkedin, 
-  ArrowRight, 
-  Download, 
-  Sparkles, 
-  Code2, 
-  Cpu, 
-  Layers, 
-  Server, 
-  Terminal, 
-  Braces,
-  Award
-} from "lucide-react";
+import { Github,Linkedin, ArrowRight, Download, Code2, Cpu, Layers, Server, Terminal, Braces,Award} from "lucide-react";
 
 interface HeroProps {
   scrollToContact: () => void;
@@ -149,23 +136,7 @@ export default function Hero({ scrollToContact }: HeroProps) {
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           
           {/* Availability Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, type: "spring" }}
-            className="mb-6"
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4.5 py-1.5 backdrop-blur-xl">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
-                <Sparkles size={11} className="text-blue-400" />
-                Available for Freelance
-              </span>
-            </div>
-          </motion.div>
+         
 
           {/* Heading */}
           <motion.h1
