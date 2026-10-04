@@ -6,6 +6,18 @@ export default function About() {
   const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
 
   const experiences = [
+
+    {
+  role: "Software Developer Intern",
+  company: "Jetquins",
+  duration: "july – october",
+  location: "Remote",
+  points: [
+    "Developing BrillSign, a decentralized e-signature platform focused on secure, reliable, and streamlined digital document workflows.",
+    "Built and integrated features for document management, signing workflows, reviewers, and user authentication across the application.",
+    "Collaborated on API integration, database operations, UI development, debugging, and performance optimization to improve overall product reliability."
+  ]
+},
     {
       role: "Software Developer Intern",
       company: "onNextWeb",
@@ -32,7 +44,7 @@ export default function About() {
 
   const education = [
     {
-      degree: "Bachelor of Technology in Computer Engineering",
+      degree: "B.tech",
       institution: "Jamia Millia Islamia",
       duration: "2022 – 2026",
       location: "New Delhi, India",
@@ -40,10 +52,10 @@ export default function About() {
     },
     {
       degree: "Senior Secondary Education (Class XII)",
-      institution: "AMU Senior Secondary School",
-      duration: "2020 – 2022",
-      location: "Aligarh, India",
-      details: "Completed with a focus on Mathematics, Physics, and Computer Science."
+      institution: "Hamdard public school talimabad ,sangam vihar",
+      duration: "2019 – 2021",
+      location: "Delhi, India",
+      details: "Completed with a focus on Mathematics, Physics, and Chemistry."
     }
   ];
 
@@ -87,7 +99,11 @@ export default function About() {
               </h3>
               
               <p className="text-gray-400 leading-relaxed text-sm">
-                I am a final-year Computer Engineering student and a passionate Full-Stack Developer with hands-on experience building scalable applications. I enjoy creating seamless interactions on the frontend while developing optimized, secure services on the backend.
+                I’m a Software Developer with hands-on experience building scalable, 
+                high-performance applications. I enjoy creating seamless user experiences 
+                on the frontend while developing secure, efficient, and optimized backend services.
+                 I’m passionate about writing clean code, solving complex problems,
+                 and turning ideas into reliable, impactful digital solutions.
               </p>
               
               <p className="text-gray-400 leading-relaxed text-sm mt-4">
