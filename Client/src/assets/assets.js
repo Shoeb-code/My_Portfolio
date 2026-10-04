@@ -4,4 +4,4 @@ export const assets = {
   bg,
 };
 
-export default assets;
+export default assets;
