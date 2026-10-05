@@ -41,7 +41,7 @@ export default function Home() {
       {/* Main Layout Flow */}
       <Header scrollToContact={scrollToContact} />
       
-      <main className="relative bg-[#030712]">
+      <main className="relative bg-[#000000]">
         <Hero scrollToContact={scrollToContact} />
         
         {/* About Section */}
