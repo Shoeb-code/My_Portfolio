@@ -1,266 +1,380 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {  GraduationCap,  Briefcase,  Download,  Calendar,  MapPin,  Building2, Trophy } from "lucide-react";
+import { motion } from "framer-motion";
+import { 
+  GraduationCap, 
+  Download, 
+  MapPin, 
+  Building2, 
+  Award, 
+  Layers, 
+  Zap, 
+  ShieldCheck, 
+  Code2, 
+  Terminal, 
+  ArrowUpRight,
+  Cpu,
+  CheckCircle2
+} from "lucide-react";
 
 export default function About() {
-  const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
-
-  const experiences = [
-
-    {
-  role: "Software Developer Intern",
-  company: "Jetquins",
-  duration: "july – october",
-  location: "Remote",
-  points: [
-    "Developing BrillSign, a decentralized e-signature platform focused on secure, reliable, and streamlined digital document workflows.",
-    "Built and integrated features for document management, signing workflows, reviewers, and user authentication across the application.",
-    "Collaborated on API integration, database operations, UI development, debugging, and performance optimization to improve overall product reliability."
-  ]
-},
-    {
-      role: "Software Developer Intern",
-      company: "onNextWeb",
-      duration: "Dec 2025 – Present",
-      location: "Remote",
-      points: [
-        "Developing scalable MERN stack modules for real-world software platforms.",
-        "Refactoring endpoints and designing REST APIs to optimize load times by 35%.",
-        "Participating in code reviews, optimizing layouts, and standardizing frontend components."
-      ]
-    },
-    {
-      role: "Frontend Engineer Intern",
-      company: "CodeFast Platform",
-      duration: "Mar 2025 – Jun 2025",
-      location: "New Delhi, India",
-      points: [
-        "Crafted responsive and highly interactive UI elements using React & Tailwind CSS.",
-        "Collaborated on designing and compiling a reusable component library, boosting UX engagement by 40%.",
-        "Optimized web vitals, bundle sizes, and visual layouts for speed and mobile responsiveness."
-      ]
-    }
-  ];
-
   const education = [
     {
-      degree: "B.tech",
+      degree: "Bachelor of Technology (B.Tech)",
       institution: "Jamia Millia Islamia",
       duration: "2022 – 2026",
       location: "New Delhi, India",
-      details: "Specializing in software engineering, algorithms, and full-stack development. Active member of technical clubs."
+      highlight: "Specializing in Software Engineering & Distributed Systems",
+      coursework: ["Data Structures & Algorithms", "DBMS", "Operating Systems", "Computer Networks"]
     },
     {
       degree: "Senior Secondary Education (Class XII)",
-      institution: "Hamdard public school talimabad ,sangam vihar",
+      institution: "Hamdard Public School",
       duration: "2019 – 2021",
-      location: "Delhi, India",
-      details: "Completed with a focus on Mathematics, Physics, and Chemistry."
+      location: "New Delhi, India",
+      highlight: "Distinction in Science & Mathematics",
+      coursework: ["Mathematics", "Physics", "Chemistry", "Computer Science"]
+    }
+  ];
+
+  const pillars = [
+    {
+      number: "01",
+      icon: <Layers className="text-[#2997FF]" size={18} />,
+      title: "System Scalability",
+      desc: "High-throughput REST APIs and optimized database query indexing.",
+      tag: "MERN Stack",
+      accent: "#2997FF"
+    },
+    {
+      number: "02",
+      icon: <Zap className="text-[#BF5AF2]" size={18} />,
+      title: "Fluid UI Engineering",
+      desc: "60fps micro-animations and strict TypeScript type contracts.",
+      tag: "React 19 & Framer",
+      accent: "#BF5AF2"
+    },
+    {
+      number: "03",
+      icon: <Award className="text-[#FFD60A]" size={18} />,
+      title: "Algorithmic Rigor",
+      desc: "Optimized time and space complexity with advanced graph theory.",
+      tag: "520+ DSA Solved",
+      accent: "#FFD60A"
+    },
+    {
+      number: "04",
+      icon: <ShieldCheck className="text-[#30D158]" size={18} />,
+      title: "Security & Standards",
+      desc: "Cryptographic token auth, modular patterns, and clean code hygiene.",
+      tag: "JWT & Strict Types",
+      accent: "#30D158"
+    }
+  ];
+
+  const techDomains = [
+    {
+      title: "Frontend Architecture",
+      icon: <Code2 size={16} className="text-[#2997FF]" />,
+      skills: ["React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Next.js", "Redux Toolkit"]
+    },
+    {
+      title: "Backend & Systems",
+      icon: <Cpu size={16} className="text-[#30D158]" />,
+      skills: ["Node.js", "Express.js", "RESTful APIs", "JWT Security", "System Design", "Microservices"]
+    },
+    {
+      title: "Databases & DevOps",
+      icon: <Terminal size={16} className="text-[#BF5AF2]" />,
+      skills: ["MongoDB", "PostgreSQL", "Git / GitHub", "Vite", "Docker", "Postman"]
     }
   ];
 
   return (
-    <section id="about-section" className="relative py-28 px-6 bg-[#030712] overflow-hidden">
-      {/* Background radial effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] right-[-10%] h-[350px] w-[350px] rounded-full bg-blue-500/5 blur-[120px]" />
-        <div className="absolute bottom-[20%] left-[-10%] h-[350px] w-[350px] rounded-full bg-purple-500/5 blur-[120px]" />
+    <section id="about" className="relative py-28 px-4 sm:px-6 lg:px-12 bg-[#000000] overflow-hidden">
+      {/* Apple-style subtle ambient background */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <div className="absolute top-1/4 right-1/4 w-[700px] h-[400px] bg-gradient-to-b from-blue-900/10 via-purple-900/5 to-transparent blur-[160px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:28px_28px] opacity-30" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto space-y-16 sm:space-y-20">
         
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+        {/* Swiss Style Header */}
+        <div className="flex flex-col items-center text-center space-y-3 max-w-3xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F5F5F7]"
+          >
             About Me
-          </h2>
-          <p className="text-gray-500 mt-3 text-sm font-mono tracking-widest uppercase">
-            Professional background &amp; path
-          </p>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-[#86868B] max-w-2xl text-[15px] sm:text-lg leading-relaxed"
+          >
+            A synthesis of algorithmic rigor, full-stack systems engineering, and deliberate interface design.
+          </motion.p>
         </div>
 
-        {/* Grid Container */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        {/* Compact Bento Grid Top Tier */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
-          {/* Left Column: Bio Details */}
+          {/* Main Dossier Card (7 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 space-y-6"
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-7 flex flex-col justify-between bg-[#0A0A0C]/90 rounded-3xl p-7 sm:p-9 border border-white/[0.08] shadow-2xl backdrop-blur-xl relative overflow-hidden space-y-6"
           >
-            <div className="glass-card rounded-[2rem] p-8 border border-white/5 shadow-2xl relative overflow-hidden group">
-              {/* Decorative accent */}
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-blue-500 to-purple-500" />
+            <div className="space-y-6">
               
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Who I Am
-              </h3>
-              
-              <p className="text-gray-400 leading-relaxed text-sm">
-                I’m a Software Developer with hands-on experience building scalable, 
-                high-performance applications. I enjoy creating seamless user experiences 
-                on the frontend while developing secure, efficient, and optimized backend services.
-                 I’m passionate about writing clean code, solving complex problems,
-                 and turning ideas into reliable, impactful digital solutions.
-              </p>
-              
-              <p className="text-gray-400 leading-relaxed text-sm mt-4">
-                My approach to coding is driven by clean architecture, performance efficiency, and robust user experiences. Over the past couple of years, I have successfully delivered freelance modules, designed database architectures, and worked in collaborative environments during internships.
-              </p>
+              {/* Profile Meta Header */}
+              <div className="flex items-center justify-between flex-wrap gap-3 pb-4 border-b border-white/[0.06]">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#2997FF]">
+                  Profile • Shoeb Khan
+                </span>
 
-              <div className="pt-6 border-t border-white/5 mt-6 space-y-3.5">
-                <div className="flex items-center gap-3 text-xs text-gray-400">
-                  <MapPin size={15} className="text-blue-500" />
-                  <span>Based in Okhla, New Delhi, India</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-gray-400">
-                  <Trophy size={15} className="text-yellow-500" />
-                  <span>LeetCode solver (520+ problems solved)</span>
+                <div className="flex items-center gap-1.5 text-xs text-[#86868B] font-mono">
+                  <MapPin size={13} className="text-[#2997FF]" />
+                  <span>New Delhi, India</span>
                 </div>
               </div>
 
-              <div className="mt-8">
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-sm font-semibold shadow-lg hover:shadow-blue-500/20 active:scale-95 transition-all duration-300 cursor-pointer"
-                >
-                  Download CV / Resume
-                  <Download size={15} />
-                </a>
+              {/* Title & Core narrative */}
+              <div className="space-y-3">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#F5F5F7] tracking-tight leading-snug">
+                  Engineering Scalable Systems with Structural Precision.
+                </h3>
+                
+                <p className="text-sm sm:text-[15px] text-[#A1A1A6] leading-relaxed">
+                  Full-Stack Software Developer focused on bridging high-throughput backend infrastructure with intuitive, kinetic client-side interfaces.
+                </p>
+
+                <p className="text-xs sm:text-sm font-mono text-[#86868B] leading-relaxed">
+                  Specializing in secure multi-tier REST APIs, optimized MongoDB schemas, and 60 FPS component architectures engineered for scale.
+                </p>
               </div>
+
+              {/* Compact Metrics Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.05]">
+                  <div className="p-2.5 rounded-xl bg-white/[0.04] text-[#FFD60A]">
+                    <Award size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-[#F5F5F7]">520+ Problems</h4>
+                    <p className="text-xs text-[#86868B]">LeetCode &amp; Algorithmic DSA</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.05]">
+                  <div className="p-2.5 rounded-xl bg-white/[0.04] text-[#BF5AF2]">
+                    <GraduationCap size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-[#F5F5F7]">B.Tech Engineering</h4>
+                    <p className="text-xs text-[#86868B]">Jamia Millia Islamia</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Bar */}
+            <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4">
+              <a
+                href="/resume.pdf"
+                download="Shoeb_Khan_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold text-sm hover:bg-[#E5E5EA] transition-all duration-200 cursor-pointer shadow-md"
+              >
+                <span>Download Resume</span>
+                <Download size={14} />
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-[#86868B] hover:text-white transition-colors cursor-pointer"
+              >
+                <span>Direct Inquiries</span>
+                <ArrowUpRight size={14} className="text-[#2997FF]" />
+              </a>
             </div>
           </motion.div>
 
-          {/* Right Column: Tabbed Timeline / Info */}
+          {/* Academic Pedigree Card (5 cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-5 flex flex-col justify-between bg-[#0A0A0C]/90 rounded-3xl p-7 sm:p-9 border border-white/[0.08] shadow-2xl backdrop-blur-xl relative overflow-hidden space-y-5"
           >
-            {/* Tab Buttons */}
-            <div className="flex gap-2 p-1 bg-white/[0.03] border border-white/5 rounded-2xl mb-6 max-w-sm">
-              <button
-                onClick={() => setActiveTab("experience")}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 cursor-pointer ${
-                  activeTab === "experience"
-                    ? "bg-[#111827] text-white border border-white/10 shadow-md"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                <Briefcase size={15} />
-                Experience
-              </button>
-              
-              <button
-                onClick={() => setActiveTab("education")}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 cursor-pointer ${
-                  activeTab === "education"
-                    ? "bg-[#111827] text-white border border-white/10 shadow-md"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                <GraduationCap size={16} />
-                Education
-              </button>
+            <div className="space-y-5">
+              <div className="flex items-center gap-3 pb-4 border-b border-white/[0.06]">
+                <div className="p-2.5 rounded-xl bg-white/[0.04] text-[#BF5AF2]">
+                  <GraduationCap size={18} />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-[#F5F5F7] tracking-tight">Academic Pedigree</h3>
+                  <p className="text-xs text-[#86868B] font-mono">Formal Engineering Education</p>
+                </div>
+              </div>
+
+              {/* Education list */}
+              <div className="space-y-3.5">
+                {education.map((edu, idx) => (
+                  <div key={idx} className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04] space-y-2">
+                    <div className="flex items-center justify-between gap-1">
+                      <h4 className="text-sm font-bold text-[#F5F5F7]">
+                        {edu.degree}
+                      </h4>
+                      <span className="text-xs font-mono text-[#86868B]">
+                        {edu.duration}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 text-xs text-[#2997FF] font-medium">
+                      <Building2 size={13} />
+                      <span>{edu.institution}</span>
+                      <span className="text-gray-700">•</span>
+                      <span className="text-[#86868B]">{edu.location}</span>
+                    </div>
+
+                    <p className="text-xs sm:text-[13px] text-[#86868B] leading-relaxed">
+                      {edu.highlight}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {edu.coursework.map((course, cIdx) => (
+                        <span
+                          key={cIdx}
+                          className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/[0.03] text-[#86868B]"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Tab Contents */}
-            <div className="relative">
-              <AnimatePresence mode="wait">
-                {activeTab === "experience" ? (
-                  <motion.div
-                    key="experience-tab"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-6"
-                  >
-                    {experiences.map((exp, i) => (
-                      <div 
-                        key={i} 
-                        className="glass-card rounded-2xl p-6 border border-white/5 hover:border-blue-500/20 transition-all duration-300 relative group"
-                      >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                          <div>
-                            <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
-                              {exp.role}
-                            </h4>
-                            <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
-                              <Building2 size={13} className="text-gray-500" />
-                              <span>{exp.company}</span>
-                              <span>•</span>
-                              <MapPin size={13} className="text-gray-500" />
-                              <span>{exp.location}</span>
-                            </div>
-                          </div>
-                          
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 text-xs text-gray-400 font-medium whitespace-nowrap self-start sm:self-center">
-                            <Calendar size={12} />
-                            {exp.duration}
-                          </div>
-                        </div>
-                        
-                        <ul className="space-y-2.5 text-xs text-gray-400 pl-4 list-disc marker:text-blue-500">
-                          {exp.points.map((pt, index) => (
-                            <li key={index} className="leading-relaxed">{pt}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="education-tab"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-6"
-                  >
-                    {education.map((edu, i) => (
-                      <div 
-                        key={i} 
-                        className="glass-card rounded-2xl p-6 border border-white/5 hover:border-purple-500/20 transition-all duration-300 relative group"
-                      >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                          <div>
-                            <h4 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
-                              {edu.degree}
-                            </h4>
-                            <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
-                              <Building2 size={13} className="text-gray-500" />
-                              <span>{edu.institution}</span>
-                              <span>•</span>
-                              <MapPin size={13} className="text-gray-500" />
-                              <span>{edu.location}</span>
-                            </div>
-                          </div>
-                          
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 text-xs text-gray-400 font-medium whitespace-nowrap self-start sm:self-center">
-                            <Calendar size={12} />
-                            {edu.duration}
-                          </div>
-                        </div>
-                        
-                        <p className="text-xs text-gray-400 leading-relaxed">
-                          {edu.details}
-                        </p>
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            {/* LeetCode quick counter */}
+            <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm">
+              <span className="text-[#86868B] font-mono text-xs">DSA Rigor</span>
+              <span className="font-mono font-semibold text-xs text-[#FFD60A] bg-[#FFD60A]/10 px-3 py-1 rounded-full border border-[#FFD60A]/20">
+                520+ Solved
+              </span>
             </div>
           </motion.div>
 
         </div>
-        
+
+        {/* Redesigned 4 Architectural Pillars: Compact & Concise */}
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-white/[0.06]">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2997FF]" />
+              <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-[#F5F5F7] font-semibold">
+                Core Engineering Philosophy
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-[#86868B]">
+              4 Architectural Pillars
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {pillars.map((pillar, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                whileHover={{ y: -3 }}
+                className="p-5 sm:p-6 rounded-3xl bg-[#0A0A0C]/90 border border-white/[0.08] hover:border-white/[0.18] transition-all duration-200 flex flex-col justify-between space-y-4 group shadow-lg backdrop-blur-xl"
+              >
+                <div className="space-y-3">
+                  {/* Top Bar: Icon + Number */}
+                  <div className="flex items-center justify-between">
+                    <div className="w-9 h-9 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-inner">
+                      {pillar.icon}
+                    </div>
+                    <span className="text-xs font-mono font-bold text-[#86868B] tracking-wider">
+                      {pillar.number}
+                    </span>
+                  </div>
+
+                  {/* Title & Short Tagline */}
+                  <h4 className="text-base font-bold text-[#F5F5F7] group-hover:text-white transition-colors">
+                    {pillar.title}
+                  </h4>
+                  
+                  <p className="text-xs sm:text-[13px] text-[#86868B] leading-relaxed">
+                    {pillar.desc}
+                  </p>
+                </div>
+
+                {/* Bottom Pill Chip */}
+                <div className="pt-3 border-t border-white/[0.04] flex items-center justify-between text-xs font-mono">
+                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[#A1A1A6]">
+                    {pillar.tag}
+                  </span>
+                  <CheckCircle2 size={13} style={{ color: pillar.accent }} className="opacity-80" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Compact Technical DNA Matrix */}
+        <div className="p-7 sm:p-8 rounded-3xl bg-[#0A0A0C]/80 border border-white/[0.06] shadow-xl backdrop-blur-xl">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="max-w-sm space-y-2">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#2997FF]">
+                Core Competencies
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold text-[#F5F5F7]">
+                Technical Ecosystem
+              </h3>
+              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+                Optimized modern tooling and architectures for building scalable enterprise software.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 flex-1">
+              {techDomains.map((domain, sIdx) => (
+                <div key={sIdx} className="space-y-2.5 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04]">
+                  <div className="flex items-center gap-2">
+                    {domain.icon}
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#F5F5F7] font-semibold">
+                      {domain.title}
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {domain.skills.map((item, iIdx) => (
+                      <span
+                        key={iIdx}
+                        className="text-xs font-mono px-2.5 py-0.5 rounded-md bg-white/[0.03] text-[#86868B]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

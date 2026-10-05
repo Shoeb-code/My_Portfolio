@@ -1,6 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Github,Linkedin, ArrowRight, Download, Code2, Cpu, Layers, Server, Terminal, Braces,Award} from "lucide-react";
+import { 
+  Github, 
+  Linkedin, 
+  ArrowRight, 
+  Download, 
+  Code2, 
+  Cpu, 
+  Layers, 
+  Server, 
+  Braces, 
+  Award
+} from "lucide-react";
 
 interface HeroProps {
   scrollToContact: () => void;
@@ -9,10 +20,10 @@ interface HeroProps {
 // Typing animation component
 function TypingAnimation() {
   const words = [
-    "MERN Stack Developer",
-    "React Native Expert",
-    "Node.js Backend Engineer",
-    "Freelance Software Developer"
+    "Full-Stack Software Engineer",
+    "MERN & TypeScript Specialist",
+    "High-Concurrency Node Backend",
+    "Kinetic React & Mobile Architect"
   ];
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
@@ -21,7 +32,7 @@ function TypingAnimation() {
 
   useEffect(() => {
     if (subIndex === words[index].length + 1 && !reverse) {
-      const timeout = setTimeout(() => setReverse(true), 1600);
+      const timeout = setTimeout(() => setReverse(true), 1800);
       return () => clearTimeout(timeout);
     }
 
@@ -34,15 +45,15 @@ function TypingAnimation() {
     const timeout = setTimeout(() => {
       setSubIndex((prev) => prev + (reverse ? -1 : 1));
       setText(words[index].substring(0, subIndex));
-    }, reverse ? 35 : 75);
+    }, reverse ? 30 : 65);
 
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
 
   return (
-    <span className="font-mono bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]">
+    <span className="text-[#F5F5F7] font-mono">
       {text}
-      <span className="animate-pulse text-purple-400 font-bold ml-0.5">|</span>
+      <span className="text-[#2997FF] font-bold ml-0.5">_</span>
     </span>
   );
 }
@@ -53,8 +64,8 @@ export default function Hero({ scrollToContact }: HeroProps) {
   // Spotlight effect coordinates
   const spotlightX = useMotionValue(0);
   const spotlightY = useMotionValue(0);
-  const spotlightXSpring = useSpring(spotlightX, { stiffness: 150, damping: 25 });
-  const spotlightYSpring = useSpring(spotlightY, { stiffness: 150, damping: 25 });
+  const spotlightXSpring = useSpring(spotlightX, { stiffness: 120, damping: 25 });
+  const spotlightYSpring = useSpring(spotlightY, { stiffness: 120, damping: 25 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -69,297 +80,212 @@ export default function Hero({ scrollToContact }: HeroProps) {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [spotlightX, spotlightY]);
 
+  const metrics = [
+    { label: "520+ Solved", desc: "LeetCode DSA", icon: <Award size={18} className="text-[#FFD60A]" /> },
+    { label: "MERN + TS", desc: "Full-Stack Core", icon: <Layers size={18} className="text-[#2997FF]" /> },
+    { label: "React 19", desc: "Kinetic UI/UX", icon: <Cpu size={18} className="text-[#64D2FF]" /> },
+    { label: "Node.js", desc: "High-Throughput", icon: <Server size={18} className="text-[#30D158]" /> },
+    { label: "REST APIs", desc: "Stateless Security", icon: <Code2 size={18} className="text-[#BF5AF2]" /> },
+    { label: "B.Tech Engineering", desc: "Jamia Millia Islamia", icon: <Braces size={18} className="text-[#F5F5F7]" /> }
+  ];
+
   return (
     <section 
-      id="about" 
+      id="hero" 
       ref={sectionRef} 
-      className="relative min-h-screen overflow-hidden bg-[#030712] text-white flex flex-col justify-center py-24 md:py-32 px-6"
+      className="relative min-h-[90vh] overflow-hidden bg-[#000000] text-[#F5F5F7] flex flex-col justify-center pt-24 pb-20 px-6 sm:px-10 lg:px-16"
     >
-      {/* 1. Animated Gradient Background & Blobs */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Spotlight Overlay */}
+      {/* Apple Subtle Ambient Lighting */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <motion.div 
           style={{
-            background: `radial-gradient(400px circle at ${spotlightXSpring.get()}px ${spotlightYSpring.get()}px, rgba(59, 130, 246, 0.08), transparent 80%)`
+            background: `radial-gradient(550px circle at ${spotlightXSpring.get()}px ${spotlightYSpring.get()}px, rgba(41, 151, 255, 0.05), transparent 80%)`
           }}
           className="absolute inset-0 z-10"
         />
-        
-        {/* Floating blurred neon blobs */}
-        <motion.div
-          animate={{
-            y: [0, 45, 0],
-            x: [0, -30, 0],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-[10%] left-[5%] md:left-[15%] h-[350px] w-[350px] rounded-full bg-blue-500/10 blur-[130px]"
-        />
-        <motion.div
-          animate={{
-            y: [0, -60, 0],
-            x: [0, 40, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-          className="absolute bottom-[10%] right-[5%] md:right-[15%] h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[140px]"
-        />
-        <motion.div
-          animate={{
-            scale: [0.9, 1.1, 0.9],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-cyan-500/5 blur-[150px]"
-        />
-        
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:40px_40px] opacity-60" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-blue-900/10 via-purple-900/5 to-transparent blur-[160px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:28px_28px] opacity-35" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
         
-        {/* Left column: Text details */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left">
+        {/* Main 2-Column Hero Grid */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center py-6">
           
-          {/* Availability Badge */}
-         
-
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, type: "spring" }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.08] mb-6"
-          >
-            Building 
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 font-extrabold">
-              scalable digital
-            </span>
-            products that matter.
-          </motion.h1>
-
-          {/* Dynamic Typing Title */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg sm:text-2xl font-medium text-gray-300 mb-6 min-h-[36px]"
-          >
-            I am a <TypingAnimation />
-          </motion.div>
-
-          {/* Intro Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-base sm:text-lg leading-relaxed text-gray-400 max-w-xl mb-10"
-          >
-            Hi, I’m <span className="text-white font-semibold underline decoration-blue-500 underline-offset-4">Shoeb Khan</span>. 
-            I engineer high-performance web applications, robust backends, and premium interfaces. I help startups and direct businesses turn conceptual blueprints into production-grade solutions.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap gap-4 w-full sm:w-auto"
-          >
-            <button
-              onClick={scrollToContact}
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:scale-[1.03] active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-[0_10px_35px_rgba(59,130,246,0.3)] hover:shadow-[0_12px_45px_rgba(139,92,246,0.45)]"
-            >
-              Hire Me
-              <ArrowRight size={18} />
-            </button>
-
-            <a
-              href="/resume.pdf"
-              download
-              className="px-7 py-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-300 hover:text-white font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer"
-            >
-              Download Resume
-              <Download size={16} />
-            </a>
-          </motion.div>
-
-          {/* Social icons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="flex items-center gap-4 mt-8"
-          >
-            <a
-              href="https://github.com/Shoeb-code"
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 rounded-xl border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:scale-105 transition-all duration-300 cursor-pointer"
-              aria-label="GitHub Profile"
-            >
-              <Github size={18} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/shoeb-khan-480b58259/"
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 rounded-xl border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-purple-500/50 hover:shadow-[0_0_15px_rgba(139,92,246,0.2)] hover:scale-105 transition-all duration-300 cursor-pointer"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin size={18} />
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Right column: Futuristic Avatar / Profile showcase */}
-        <div className="lg:col-span-5 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-            className="relative w-64 h-64 sm:w-80 sm:h-80 select-none group"
-          >
-            {/* Spinning decorative outline rings */}
-            <div className="absolute inset-0 rounded-full border border-dashed border-blue-500/30 animate-[spin_40s_linear_infinite] pointer-events-none" />
-            <div className="absolute -inset-4 rounded-full border border-purple-500/20 animate-[spin_25s_linear_infinite_reverse] pointer-events-none" />
+          {/* Left Column: Swiss Editorial Copy (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left space-y-7">
             
-            {/* Pulsing glow under avatar */}
-            <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 opacity-20 blur-xl group-hover:opacity-30 transition-opacity" />
-            
-            {/* Inner avatar container */}
-            <div className="absolute inset-2 rounded-full overflow-hidden border border-white/10 bg-[#111827] flex items-center justify-center p-3">
-              {/* Fallback avatar graphic */}
-              <div className="w-full h-full rounded-full bg-[#030712] border border-white/5 flex flex-col items-center justify-center relative overflow-hidden group">
-                {/* Tech icon graphics floating in avatar background */}
-                <div className="absolute inset-0 opacity-10 flex items-center justify-center">
-                  <div className="absolute top-8 left-8 text-blue-500"><Code2 size={24} /></div>
-                  <div className="absolute bottom-8 right-8 text-purple-500"><Cpu size={24} /></div>
+            {/* Monospace Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[#86868B] text-xs sm:text-sm font-mono tracking-wide"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#30D158]" />
+              Full-Stack Software Engineer
+            </motion.div>
+
+            {/* Apple Keynote Style Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight text-[#F5F5F7] leading-[1.05]"
+            >
+              Building digital <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D1D1D6] to-[#86868B]">
+                products that scale.
+              </span>
+            </motion.h1>
+
+            {/* Dynamic Role Subhead */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="text-lg sm:text-2xl text-[#86868B] font-mono"
+            >
+              Specializing as <TypingAnimation />
+            </motion.div>
+
+            {/* Bio Description (16px/17px) */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base sm:text-lg text-[#86868B] leading-relaxed max-w-2xl"
+            >
+              Hi, I’m <strong className="text-[#F5F5F7] font-semibold">Shoeb Khan</strong>. 
+              I engineer high-performance web applications, robust backends, and kinetic user interfaces. I bridge complex architectural logic with deliberate, refined interface design.
+            </motion.p>
+
+            {/* Apple Style CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto"
+            >
+              <button
+                onClick={scrollToContact}
+                className="px-7 py-3.5 rounded-full bg-[#F5F5F7] text-black font-semibold text-sm sm:text-base hover:bg-[#E5E5EA] active:scale-95 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-lg"
+              >
+                <span>Get in Touch</span>
+                <ArrowRight size={16} />
+              </button>
+
+              <a
+                href="/resume.pdf"
+                download="Shoeb_Khan_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/20 text-[#F5F5F7] text-sm sm:text-base font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer"
+              >
+                <span>Curriculum Vitae</span>
+                <Download size={15} className="text-[#86868B]" />
+              </a>
+
+              {/* Social links */}
+              <div className="flex items-center gap-2.5 pl-2">
+                <a
+                  href="https://github.com/Shoeb-code"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 rounded-full border border-white/10 bg-white/[0.03] text-[#86868B] hover:text-white hover:border-white/25 transition-all duration-200 cursor-pointer"
+                  aria-label="GitHub"
+                >
+                  <Github size={17} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/shoeb-khan-480b58259/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 rounded-full border border-white/10 bg-white/[0.03] text-[#86868B] hover:text-white hover:border-white/25 transition-all duration-200 cursor-pointer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={17} />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Swiss Architectural Monolith Card (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="w-full max-w-md rounded-3xl bg-[#0A0A0C]/90 border border-white/[0.08] p-8 shadow-2xl backdrop-blur-2xl relative overflow-hidden"
+            >
+              {/* Top Telemetry Header */}
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.06] text-xs font-mono text-[#86868B]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#30D158]" />
+                  <span>CORE SPECS</span>
                 </div>
-                
-                {/* Simulated developer visual (Sleek initials or avatar) */}
-                <span className="text-7xl font-extrabold bg-gradient-to-tr from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent select-none">
-                  SK
-                </span>
-                
-                {/* Floating particle text style */}
-                <div className="absolute bottom-4 text-[10px] tracking-[0.2em] font-mono text-gray-500 font-medium">
-                  FULL-STACK
+                <span>Node.js • React • TypeScript</span>
+              </div>
+
+              {/* Center Monogram Graphic */}
+              <div className="py-8 flex flex-col items-center justify-center relative">
+                <div className="w-32 h-32 rounded-3xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 flex flex-col items-center justify-center relative shadow-inner">
+                  <span className="text-5xl font-extrabold tracking-tight text-[#F5F5F7] select-none">
+                    SK
+                  </span>
+                  <span className="text-[10px] font-mono text-[#86868B] tracking-[0.2em] mt-1.5">
+                    ENGINEER
+                  </span>
                 </div>
               </div>
-            </div>
-            
-            {/* Small floating badges around avatar */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -top-2 -right-2 p-2.5 rounded-xl border border-white/10 bg-[#111827]/90 backdrop-blur-md shadow-lg"
-            >
-              <Braces size={16} className="text-cyan-400" />
+
+              {/* Stack Telemetry Chips */}
+              <div className="space-y-2.5 pt-2">
+                <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.04] flex items-center justify-between text-sm">
+                  <span className="text-[#86868B] font-mono text-xs">Primary Domain</span>
+                  <span className="font-semibold text-[#F5F5F7]">Full-Stack Systems</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.04] flex items-center justify-between text-sm">
+                  <span className="text-[#86868B] font-mono text-xs">Algorithmic Solves</span>
+                  <span className="font-mono text-[#FFD60A] font-semibold">520+ Problems</span>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.04] flex items-center justify-between text-sm">
+                  <span className="text-[#86868B] font-mono text-xs">University</span>
+                  <span className="font-semibold text-[#F5F5F7]">Jamia Millia Islamia</span>
+                </div>
+              </div>
             </motion.div>
-            
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-2 -left-2 p-2.5 rounded-xl border border-white/10 bg-[#111827]/90 backdrop-blur-md shadow-lg"
-            >
-              <Terminal size={16} className="text-purple-400" />
-            </motion.div>
-          </motion.div>
+          </div>
+
+        </div>
+
+        {/* Bottom Metrics Bar (Compact Swiss Grid) */}
+        <div className="pt-14 mt-10 border-t border-white/[0.06]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {metrics.map((metric, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.04 }}
+                className="p-4 rounded-2xl bg-[#0A0A0C]/80 border border-white/[0.06] hover:border-white/15 transition-all duration-200 flex flex-col items-start cursor-default"
+              >
+                <div className="mb-2.5 p-2 rounded-xl bg-white/[0.03]">
+                  {metric.icon}
+                </div>
+                <h4 className="text-sm sm:text-[15px] font-bold text-[#F5F5F7] tracking-tight">
+                  {metric.label}
+                </h4>
+                <p className="text-xs text-[#86868B] font-mono mt-0.5">
+                  {metric.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
-
-      {/* 2. Interactive Statistics Grid */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full mt-24">
-        <h3 className="text-xs font-mono uppercase tracking-[0.3em] text-gray-500 text-center mb-8">
-          Core Metrics &amp; Expertise
-        </h3>
-
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
-          <MetricCard
-            icon={<Award className="text-yellow-400" size={20} />}
-            title="520+ Solved"
-            subtitle="LeetCode Problems"
-            delay={0.1}
-          />
-          <MetricCard
-            icon={<Layers className="text-blue-400" size={20} />}
-            title="MERN Stack"
-            subtitle="React/Express/Node/Mongo"
-            delay={0.2}
-          />
-          <MetricCard
-            icon={<Cpu className="text-cyan-400" size={20} />}
-            title="React Dev"
-            subtitle="Web &amp; Mobile UI/UX"
-            delay={0.3}
-          />
-          <MetricCard
-            icon={<Server className="text-purple-400" size={20} />}
-            title="Node Backend"
-            subtitle="Robust architecture"
-            delay={0.4}
-          />
-          <MetricCard
-            icon={<Code2 className="text-pink-400" size={20} />}
-            title="REST APIs"
-            subtitle="Scalable integrations"
-            delay={0.5}
-          />
-          <MetricCard
-            icon={<Braces className="text-indigo-400" size={20} />}
-            title="TypeScript"
-            subtitle="Type-safe software"
-            delay={0.6}
-          />
-        </div>
-      </div>
-      
     </section>
-  );
-}
-
-interface MetricCardProps {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  delay: number;
-}
-
-function MetricCard({ icon, title, subtitle, delay }: MetricCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay, type: "spring" }}
-      whileHover={{ y: -6, scale: 1.02 }}
-      className="glass-card rounded-2xl p-5 border border-white/5 hover:border-blue-500/20 hover:shadow-[0_10px_25px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col items-center text-center cursor-default group"
-    >
-      <div className="mb-3 p-2.5 rounded-xl bg-white/[0.03] group-hover:bg-white/[0.07] transition-colors">
-        {icon}
-      </div>
-      <h4 className="font-bold text-sm tracking-tight text-white mb-1">
-        {title}
-      </h4>
-      <p className="text-[11px] text-gray-500 leading-normal">
-        {subtitle}
-      </p>
-    </motion.div>
   );
 }
