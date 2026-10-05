@@ -29,8 +29,8 @@ export const projects: Record<string, Project> = {
       "/project/info.png",
     ],
     projectsInsight: "Developed FastTutors, a full-stack tutor–parent matching platform that connects students and parents with suitable tutors through a streamlined onboarding and enquiry system. Implemented secure JWT-based authentication and role-based access control for tutors and parents, built scalable REST APIs using Express.js and Node.js to manage profiles, enquiries, and dashboard data, and integrated MongoDB for efficient storage of user information and tuition requests. Designed a responsive and user-friendly interface with React and Tailwind CSS, featuring role-based dashboards, profile management, and real-time enquiry workflows to improve usability and platform scalability.",
-    github: "https://github.com/Shoeb-code/fasttutors",
-    live: "#",
+    github: "https://github.com/Shoeb-code/FastTutors_PlatForm",
+    live: "https://fast-tutors-plat-form.vercel.app/",
     features: [
       "Tutor & parent onboarding workflows",
       "Secure JWT-based authentication & cookie handling",

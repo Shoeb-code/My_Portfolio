@@ -1,115 +1,170 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
+import { 
+  Github, 
+  ExternalLink, 
+  ArrowUpRight, 
+  Layers
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { projects, Project } from "../../data/projects";
 
-interface ProjectRowProps {
+interface ProjectCardProps {
   project: Project;
   index: number;
 }
 
-function ProjectRow({ project, index }: ProjectRowProps) {
+function ProjectCard({ project, index }: ProjectCardProps) {
   const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const isFlipped = index % 2 !== 0;
+  const isLive = project.live && project.live !== "#";
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-      className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center mb-24 last:mb-0"
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-[#0A0A0C] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-8 border border-white/[0.08] hover:border-white/[0.2] shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-all duration-300 group relative overflow-hidden"
     >
-      {/* Project Details */}
-      <div className={`lg:col-span-5 space-y-6 ${isFlipped ? "lg:order-2" : "lg:order-1"}`}>
-        <div className="space-y-2">
-          <span className="text-xs font-mono tracking-widest text-blue-400 uppercase font-semibold">
-            Featured Project · {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="text-2xl sm:text-4xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
-            {project.title}
-          </h3>
-        </div>
+      {/* Subtle Apple Obsidian Ambient Glow */}
+      <div className="absolute top-0 right-1/4 w-[400px] h-[250px] bg-[#2997FF]/[0.03] rounded-full blur-[120px] pointer-events-none group-hover:bg-[#2997FF]/[0.06] transition-all duration-500" />
 
-        <p className="text-sm sm:text-base leading-relaxed text-gray-400">
-          {project.description}
-        </p>
+      <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+        
+        {/* Project Technical Highlights */}
+        <div className={`lg:col-span-5 space-y-4 ${isFlipped ? "lg:order-2" : "lg:order-1"}`}>
+          
+          {/* Header Metadata */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2.5">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#2997FF] font-bold">
+                0{index + 1} • FLAGSHIP
+              </span>
+              <span className="text-white/20">•</span>
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#86868B]">
+                <Layers size={11} className="text-[#30D158]" />
+                Full-Stack
+              </span>
+            </div>
 
-        {/* Tech Badges */}
-        <div className="flex flex-wrap gap-2">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-xs px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/5 text-gray-300 font-medium"
+            <h3 
+              onClick={() => navigate(`/projects/${project.slug}`)}
+              className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F5F7] group-hover:text-white transition-colors cursor-pointer"
             >
-              {t}
-            </span>
-          ))}
-        </div>
+              {project.title}
+            </h3>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-3.5 pt-2">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer"
-          >
-            <Github size={16} />
-            Source Code
-          </a>
+            <p className="text-xs font-mono text-[#2997FF] line-clamp-1">
+              {project.tagline}
+            </p>
+          </div>
 
-          {project.live && project.live !== "#" && (
+          {/* Crisp 1-Line Summary */}
+          <p className="text-[14px] leading-relaxed text-[#A1A1A6] line-clamp-2">
+            {project.description}
+          </p>
+
+          {/* Core Tech Stack */}
+          <div className="flex flex-wrap gap-1.5 pt-1">
+            {project.tech.slice(0, 5).map((t) => (
+              <span
+                key={t}
+                className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.07] text-[#D1D1D6]"
+              >
+                {t}
+              </span>
+            ))}
+            {project.tech.length > 5 && (
+              <span className="text-[11px] font-mono px-2 py-0.5 text-[#86868B]">
+                +{project.tech.length - 5}
+              </span>
+            )}
+          </div>
+
+          {/* Compact Action CTAs */}
+          <div className="flex flex-wrap items-center gap-2.5 pt-2">
+            <button
+              onClick={() => navigate(`/projects/${project.slug}`)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#F5F5F7] text-black text-xs font-bold hover:bg-white transition-all shadow-[0_4px_16px_rgba(255,255,255,0.12)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            >
+              <span>View Case Study</span>
+              <ArrowUpRight size={13} />
+            </button>
+
+            {isLive && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-white/[0.1] bg-white/[0.03] hover:bg-white/[0.08] text-[#F5F5F7] text-xs font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              >
+                <ExternalLink size={12} />
+                <span>Live Demo</span>
+              </a>
+            )}
+
             <a
-              href={project.live}
+              href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-xl border border-white/[0.1] bg-white/[0.03] hover:bg-white/[0.08] text-[#86868B] hover:text-[#F5F5F7] transition-all cursor-pointer"
+              title="GitHub Repository"
             >
-              <ExternalLink size={16} />
-              Live Demo
+              <Github size={14} />
             </a>
-          )}
-
-          <button
-            onClick={() => navigate(`/projects/${project.slug}`)}
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-xs sm:text-sm font-semibold hover:scale-[1.03] active:scale-95 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-blue-500/10"
-          >
-            View Case Study
-            <ArrowUpRight size={16} />
-          </button>
-        </div>
-      </div>
-
-      {/* Project Image Wrapper with Zoom & Glow */}
-      <div className={`lg:col-span-7 ${isFlipped ? "lg:order-1" : "lg:order-2"}`}>
-        <motion.div
-          whileHover={{ y: -6, scale: 1.01 }}
-          className="relative group rounded-[2.2rem] overflow-hidden border border-white/10 bg-[#111827] shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
-          onClick={() => navigate(`/projects/${project.slug}`)}
-        >
-          {/* Neon Glow overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-purple-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
-          
-          {/* Subtle gradient overlay to darken image on bottom */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/80 via-[#030712]/20 to-transparent z-10 pointer-events-none" />
-
-          {/* Project Screenshot */}
-          <img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            className="w-full h-[260px] sm:h-[400px] object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-          />
-
-          {/* Floating Number Tag */}
-          <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-[#030712]/80 backdrop-blur-md border border-white/10 text-[10px] font-bold font-mono text-gray-400">
-            {String(index + 1).padStart(2, "0")} / {Object.keys(projects).length.toString().padStart(2, "0")}
           </div>
-        </motion.div>
+
+        </div>
+
+        {/* Compact macOS Browser Mockup Viewport */}
+        <div className={`lg:col-span-7 ${isFlipped ? "lg:order-1" : "lg:order-2"}`}>
+          <div 
+            onClick={() => navigate(`/projects/${project.slug}`)}
+            className="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#070709] shadow-[0_12px_36px_rgba(0,0,0,0.7)] group/viewport cursor-pointer"
+          >
+            {/* macOS Chrome Bar */}
+            <div className="flex items-center justify-between px-3.5 py-2 bg-[#111114] border-b border-white/[0.06]">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-[#FF5F56]/80" />
+                <div className="w-2 h-2 rounded-full bg-[#FFBD2E]/80" />
+                <div className="w-2 h-2 rounded-full bg-[#27C93F]/80" />
+              </div>
+
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#000000]/60 border border-white/[0.04] text-[10px] font-mono text-[#86868B] truncate max-w-[200px]">
+                <span className="text-[#2997FF]">https://</span>
+                <span className="truncate">{project.slug}.shoeb.dev</span>
+              </div>
+
+              <div className="text-[10px] font-mono text-[#86868B]">
+                0{index + 1}
+              </div>
+            </div>
+
+            {/* Screenshot Frame */}
+            <div className="relative overflow-hidden aspect-[16/10] bg-[#000000]">
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                className="w-full h-full object-cover object-top group-hover/viewport:scale-105 transition-transform duration-500 ease-out"
+              />
+              
+              {/* Subtle Ambient Hover Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/70 via-transparent to-transparent opacity-40 group-hover/viewport:opacity-15 transition-opacity pointer-events-none" />
+
+              {/* Hover Prompt */}
+              <div className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#000000]/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-[#F5F5F7] group-hover/viewport:border-[#2997FF]/50 transition-colors">
+                <span>Explore Architecture</span>
+                <ArrowUpRight size={11} className="text-[#2997FF]" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </motion.div>
   );
@@ -121,52 +176,40 @@ export default function Projects() {
   const headerInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="projects" className="relative py-28 px-6 bg-[#030712] overflow-hidden">
-      {/* Background radial effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[-5%] h-[350px] w-[350px] rounded-full bg-blue-500/5 blur-[120px]" />
-        <div className="absolute bottom-[20%] right-[-5%] h-[350px] w-[350px] rounded-full bg-purple-500/5 blur-[120px]" />
+    <section id="projects" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 bg-[#000000] overflow-hidden">
+      {/* Subtle Apple Pro Ambient Background Lighting */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <div className="absolute top-1/4 right-1/4 w-[650px] h-[400px] bg-gradient-to-b from-[#2997FF]/[0.05] via-[#BF5AF2]/[0.02] to-transparent blur-[160px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:32px_32px] opacity-35" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto space-y-12 sm:space-y-16">
         
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 px-4.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-5"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-xs font-semibold text-gray-400 tracking-wider uppercase">
-              Portfolio
-            </span>
-          </motion.div>
-
+        {/* Section Header: Swiss Minimalist */}
+        <div ref={headerRef} className="flex flex-col items-center text-center space-y-3 max-w-2xl mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
+            transition={{ duration: 0.45 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F5F7]"
           >
-            Featured Engineering Work
+            Featured Projects
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={headerInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gray-500 mt-4 text-sm sm:text-base max-w-xl mx-auto"
+            initial={{ opacity: 0, y: 12 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: 0.1 }}
+            className="text-[#86868B] text-sm sm:text-base leading-relaxed"
           >
-            A curated selection of platforms built with modern technology, scalable architecture, and visual polish.
+            Production full-stack platforms engineered for scale, reliability, and intuitive user workflows.
           </motion.p>
         </div>
 
-        {/* Projects Rows List */}
-        <div className="space-y-24">
+        {/* Featured Projects Showcase List */}
+        <div className="space-y-8 sm:space-y-10">
           {projectList.map((project, index) => (
-            <ProjectRow key={project.slug} project={project} index={index} />
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </div>
 
@@ -174,3 +217,5 @@ export default function Projects() {
     </section>
   );
 }
+
+

@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", sans-serif;
-  --font-space: "Space Grotesk", sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  --font-space: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Space Grotesk", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
 
-  --color-bg-dark: #030712;
-  --color-card-dark: #111827;
-  --color-brand-primary: #3B82F6;
-  --color-brand-secondary: #8B5CF6;
-  --color-brand-accent: #06B6D4;
+  --color-bg-dark: #000000;
+  --color-card-dark: #0A0A0C;
+  --color-brand-primary: #2997FF;
+  --color-brand-secondary: #BF5AF2;
+  --color-brand-accent: #64D2FF;
   
   --animate-marquee: marquee 35s linear infinite;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -19,93 +20,99 @@
   }
 }
 
-/* Custom premium styles */
+/* Apple & Swiss Design System */
 @layer utilities {
-  .glass-card {
-    background: rgba(17, 24, 39, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+  .apple-glass {
+    background: rgba(20, 20, 24, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(14, 14, 17, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
   
   .glass-nav {
-    background: rgba(3, 7, 18, 0.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .swiss-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .swiss-border:hover {
+    border-color: rgba(255, 255, 255, 0.18);
   }
 
   .text-glow {
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    text-shadow: 0 0 20px rgba(41, 151, 255, 0.4);
   }
   
   .glow-border {
     position: relative;
   }
   
-  .glow-border::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-  }
-  
   .glow-button {
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 0 20px rgba(41, 151, 255, 0.2);
     transition: all 0.3s ease;
   }
   
   .glow-button:hover {
-    box-shadow: 0 0 25px rgba(59, 130, 246, 0.45), 0 0 10px rgba(6, 182, 212, 0.25);
+    box-shadow: 0 0 30px rgba(41, 151, 255, 0.35);
   }
   
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* Hide scrollbar */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
 /* Global scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  border: 2px solid #030712;
+  border: 2px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 body {
-  background-color: #030712;
-  color: #ffffff;
+  background-color: #000000;
+  color: #F5F5F7;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-space);
+  letter-spacing: -0.03em;
 }
 
 p, span, li, button, input, textarea {
   font-family: var(--font-sans);
+  letter-spacing: -0.01em;
 }

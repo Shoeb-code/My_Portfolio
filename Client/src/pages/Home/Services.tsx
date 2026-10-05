@@ -1,125 +1,146 @@
 import { motion } from "framer-motion";
 import { 
   Globe, 
-  Atom, 
+  Layers, 
   Cpu, 
-  BarChart3, 
-  Settings, 
-  Sparkles, 
-  KeyRound, 
-  Database 
+  Database,
+  ArrowUpRight
 } from "lucide-react";
 
-interface ServiceItem {
+interface ServicePillar {
+  number: string;
   title: string;
-  description: string;
-  icon: React.ReactNode;
-  color: string;
+  tagline: string;
+  capabilities: string[];
+  icon: typeof Globe;
+  accent: string;
 }
 
 export default function Services() {
-  const services: ServiceItem[] = [
+  const pillars: ServicePillar[] = [
     {
-      title: "Full Stack Web Apps",
-      description: "End-to-end web applications with secure backends, real-time sync, and fluid client-side responsive interactions.",
-      icon: <Globe size={22} />,
-      color: "group-hover:text-blue-400 group-hover:border-blue-500/30"
+      number: "01",
+      title: "Full-Stack Web Architecture",
+      tagline: "End-to-end production web applications with robust backend foundations and fluid interfaces.",
+      capabilities: ["React 19 & Next.js", "Node & Express", "State Hydration"],
+      icon: Globe,
+      accent: "#2997FF"
     },
     {
-      title: "React Websites",
-      description: "Modern, high-performance static or dynamic SPA/MPA websites optimized for SEO, web vitals, and conversion rates.",
-      icon: <Atom size={22} />,
-      color: "group-hover:text-cyan-400 group-hover:border-cyan-500/30"
+      number: "02",
+      title: "Performance Frontend & UI",
+      tagline: "Ultra-responsive user interfaces tuned for sub-second web vitals and 60fps micro-animations.",
+      capabilities: ["TypeScript Strict", "Tailwind UI", "Framer Physics"],
+      icon: Layers,
+      accent: "#BF5AF2"
     },
     {
-      title: "Backend APIs",
-      description: "Secure, optimized RESTful or GraphQL APIs written in Express/Node.js, featuring rate-limiting, documentation, and JWT validations.",
-      icon: <Cpu size={22} />,
-      color: "group-hover:text-emerald-400 group-hover:border-emerald-500/30"
+      number: "03",
+      title: "Secure Backend & REST APIs",
+      tagline: "High-throughput API endpoints with enterprise token security, rate-limiting, and middleware guards.",
+      capabilities: ["JWT Auth Pipelines", "RBAC Security", "Structured Logging"],
+      icon: Cpu,
+      accent: "#30D158"
     },
     {
-      title: "Dashboard Development",
-      description: "Complex analytical tools and data visualization layouts using performance-centric charts, filtering, and real-time streams.",
-      icon: <BarChart3 size={22} />,
-      color: "group-hover:text-purple-400 group-hover:border-purple-500/30"
-    },
-    {
-      title: "Admin Panels",
-      description: "Internal business systems designed with role-based accessibility, logging, table formatting, and CRUD dashboard modules.",
-      icon: <Settings size={22} />,
-      color: "group-hover:text-pink-400 group-hover:border-pink-500/30"
-    },
-    {
-      title: "Portfolio Websites",
-      description: "Premium personal showcase sites utilizing premium design systems, motion layout reveals, animations, and contact flows.",
-      icon: <Sparkles size={22} />,
-      color: "group-hover:text-yellow-400 group-hover:border-yellow-500/30"
-    },
-    {
-      title: "Authentication Systems",
-      description: "Secure user registration flows using JWT credentials, session handling, cookie controls, OAuth integrations, and protected routing.",
-      icon: <KeyRound size={22} />,
-      color: "group-hover:text-indigo-400 group-hover:border-indigo-500/30"
-    },
-    {
-      title: "Database Design",
-      description: "Custom schemas, aggregation streams, caching patterns, indexing operations, and relational/document setups with MongoDB or PostgreSQL.",
-      icon: <Database size={22} />,
-      color: "group-hover:text-teal-400 group-hover:border-teal-500/30"
+      number: "04",
+      title: "Database Engineering & Cache",
+      tagline: "Optimized schemas, compound indexing, and aggregation pipelines engineered for zero latency.",
+      capabilities: ["MongoDB Pipelines", "PostgreSQL", "Redis Caching"],
+      icon: Database,
+      accent: "#FF9F0A"
     }
   ];
 
   return (
-    <section id="services" className="relative py-28 px-6 bg-[#030712] overflow-hidden">
-      {/* Background spotlights */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[50%] left-[15%] h-[350px] w-[350px] rounded-full bg-blue-500/5 blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[15%] h-[350px] w-[350px] rounded-full bg-cyan-500/5 blur-[120px]" />
+    <section id="services" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#000000] overflow-hidden">
+      {/* Apple Subtle Ambient Lighting */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-gradient-to-b from-[#2997FF]/10 via-[#BF5AF2]/5 to-transparent blur-[150px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:28px_28px] opacity-35" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto space-y-12 sm:space-y-16">
         
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            What I Can Build
-          </h2>
-          <p className="text-gray-500 mt-3 text-sm font-mono tracking-widest uppercase">
-            Freelance services &amp; engineering solutions
-          </p>
+        {/* Section Header: Swiss Minimalist */}
+        <div className="flex flex-col items-center text-center space-y-3.5 max-w-2xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl sm:text-5xl font-bold tracking-tight text-[#F5F5F7]"
+          >
+            Services &amp; Capabilities
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-[#86868B] text-[15px] sm:text-base leading-relaxed"
+          >
+            Focused software engineering competencies built for scalable web products and resilient services.
+          </motion.p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((svc, i) => (
-            <motion.div
-              key={svc.title}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08, type: "spring" }}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className="glass-card rounded-[2rem] p-6.5 border border-white/5 flex flex-col justify-between hover:border-blue-500/20 hover:shadow-[0_15px_30px_rgba(59,130,246,0.06)] transition-all duration-300 group cursor-default"
-            >
-              <div>
-                {/* Icon block */}
-                <div className={`w-12 h-12 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-center text-gray-400 mb-5 transition-all duration-300 ${svc.color}`}>
-                  {svc.icon}
+        {/* 4 Compact Cards Grid (Single-row 4-column on desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {pillars.map((pillar, i) => {
+            const IconComp = pillar.icon;
+
+            return (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                whileHover={{ y: -4 }}
+                className="bg-[#0A0A0C]/90 rounded-3xl p-6 sm:p-7 border border-white/[0.08] hover:border-white/[0.2] shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 flex flex-col justify-between space-y-5 group"
+              >
+                {/* Header Row: Compact Icon + Number */}
+                <div className="flex items-center justify-between">
+                  <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[#2997FF] group-hover:border-white/20 transition-colors shadow-inner">
+                    <IconComp size={20} style={{ color: pillar.accent }} />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-[#86868B] tracking-wider">
+                    {pillar.number}
+                  </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                  {svc.title}
-                </h3>
-                
-                <p className="text-xs text-gray-400 leading-relaxed">
-                  {svc.description}
-                </p>
-              </div>
+                {/* Content: Title + 1-sentence punchy tagline */}
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-[#F5F5F7] tracking-tight group-hover:text-white transition-colors">
+                    {pillar.title}
+                  </h3>
+                  
+                  <p className="text-xs sm:text-[13px] text-[#A1A1A6] leading-relaxed">
+                    {pillar.tagline}
+                  </p>
+                </div>
 
-              {/* Minimal aesthetic line */}
-              <div className="w-8 h-[2px] bg-gradient-to-r from-blue-500 to-purple-500 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
-            </motion.div>
-          ))}
+                {/* Compact Capability Chips */}
+                <div className="pt-3.5 border-t border-white/[0.06] space-y-2">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {pillar.capabilities.map((cap, cIdx) => (
+                      <span
+                        key={cIdx}
+                        className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[#C7C7CC] group-hover:border-white/[0.12] transition-colors"
+                      >
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-end text-[#86868B] group-hover:text-white transition-colors pt-1">
+                    <ArrowUpRight size={14} />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

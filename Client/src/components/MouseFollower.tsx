@@ -43,7 +43,7 @@ export default function MouseFollower() {
         left: glowX,
         top: glowY,
       }}
-      className="pointer-events-none fixed z-30 h-[300px] w-[300px] rounded-full bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-cyan-500/15 opacity-80 blur-[80px]"
+      className="pointer-events-none fixed z-30 h-[280px] w-[280px] rounded-full bg-gradient-to-r from-blue-500/8 via-purple-500/5 to-transparent blur-[90px] opacity-70"
     />
   );
 }
